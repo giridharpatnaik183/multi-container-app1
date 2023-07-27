@@ -1,5 +1,5 @@
 # Use a base image suitable for your application (e.g., Python, Nginx, etc.)
-FROM python:3.9
+FROM python:3.8
 
 # Set the working directory inside the container
 WORKDIR /app
