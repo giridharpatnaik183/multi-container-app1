@@ -1,0 +1,11 @@
+{
+  "name": "service2-app",
+  "version": "1.0.0",
+  "description": "Node.js application for Service 2",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "http": "^0.0.1"
+  }
+}
