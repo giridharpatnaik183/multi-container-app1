@@ -1,28 +1,34 @@
-name: CI/CD Pipeline
+name: CI/CD
 
 on:
   push:
     branches:
       - main
-      
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push service1 Docker image
+      env:
+        DOCKERHUB_REPO: giridharpatnaik183/assignment5
+        DOCKER_IMAGE_TAG: service1
+      working-directory: service1  # Set the working directory to the location of Dockerfile for service1
+      run: |
+        echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
+        docker build -t $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG .
+        docker push $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG
 
-      - name: Build and Push Docker images
-        env:
-          DOCKER_IMAGE_TAG: latest
-          DOCKERHUB_REPO: giridharpatnaik183/assignment5
-        run: |
-          docker build -t $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG .
-          docker push $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG
+    - name: Build and push service2 Docker image
+      env:
+        DOCKERHUB_REPO: giridharpatnaik183/assignment5
+        DOCKER_IMAGE_TAG: service2
+      working-directory: service2  # Set the working directory to the location of Dockerfile for service2
+      run: |
+        echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
+        docker build -t $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG .
+        docker push $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG
