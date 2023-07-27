@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  service1:
+    build:
+      context: ./service1   # Path to the directory containing the Dockerfile for service1
+    ports:
+      - "8000:8000"        # Expose the necessary port(s) if required by your service1
+    networks:
+      - my-network
+
+  service2:
+    build:
+      context: ./service2   # Path to the directory containing the Dockerfile for service2
+    ports:
+      - "3000:3000"        # Expose the necessary port(s) if required by your service2
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
