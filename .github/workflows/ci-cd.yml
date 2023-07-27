@@ -18,7 +18,7 @@ jobs:
         DOCKER_CONFIG: ${{ secrets.DOCKER_CONFIG_JSON }}
       run: |
         mkdir -p $HOME/.docker
-        echo "$DOCKER_CONFIG" | base64 -d > $HOME/.docker/config.json
+        echo "$DOCKER_CONFIG" > $HOME/.docker/config.json
 
     - name: Build and push service1 Docker image
       env:
