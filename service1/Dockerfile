@@ -1,17 +1,19 @@
-# Use a base image suitable for your application (e.g., Python, Nginx, etc.)
-FROM python:3.8
+# Dockerfile for service1
+FROM node:latest
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the requirements.txt file into the container (assuming it is in the same directory as the Dockerfile)
-COPY requirements.txt /app/
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install npm dependencies
+RUN npm install
 
-# Copy the rest of the application code into the container
-COPY . /app/
+# Copy the rest of the application files
+COPY . .
 
-# Specify the command to run the web server
-CMD ["python", "app.py"]
+# Your other Dockerfile commands go here...
+
+# Start the application
+CMD ["npm", "start"]
