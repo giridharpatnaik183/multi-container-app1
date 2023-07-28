@@ -5,15 +5,16 @@ FROM node:latest
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+#COPY package*.json ./
+COPY package.json package1.json
 
 # Install npm dependencies
-RUN npm install
+#RUN npm install
 
 # Copy the rest of the application files
-COPY . .
+#COPY . .
 
 # Your other Dockerfile commands go here...
 
 # Start the application
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
