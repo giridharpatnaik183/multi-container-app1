@@ -1,5 +1,6 @@
 # Dockerfile for service2
-FROM python:latest
+#FROM python:latest
+FROM node:latest
 
 # Set the working directory
 WORKDIR /app
